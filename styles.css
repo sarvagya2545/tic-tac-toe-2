@@ -1,0 +1,160 @@
+*,
+*::before, 
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 62.5%;
+}
+
+.board {
+    margin: 20rem auto;
+    width: fit-content;
+    display: grid;
+    grid-template-columns: repeat(3, 10rem);
+}
+
+/* Styling the X */
+.cell.x::before,
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after {
+    content: '';
+    position: absolute;
+    display: inline-block;
+    width: 1rem;
+    height: 90%;
+}
+
+.cell.x::before,
+.cell.x::after {
+    background-color: black;
+}
+
+.board.x .cell:not(.x):not(.o):hover::before,
+.board.x .cell:not(.x):not(.o):hover::after {
+    background-color: lightgrey;
+}
+
+.cell.x::before,
+.board.x .cell:not(.x):not(.o):hover::before {
+    transform: rotate(45deg);
+}
+
+.cell.x::after,
+.board.x .cell:not(.x):not(.o):hover::after {
+    transform: rotate(-45deg);
+}
+
+/* Styling the O */
+.cell.o::before,
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::before,
+.board.o .cell:not(.x):not(.o):hover::after  {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+}
+
+.cell.o::before,
+.board.o .cell:not(.x):not(.o):hover::before {
+    height: 8rem;
+    width: 8rem;
+}
+
+.cell.o::before{
+    background-color: black;
+}
+
+.board.o .cell:not(.x):not(.o):hover::before {
+    background-color: lightgrey;
+}
+
+.cell.o::after,
+.board.o .cell:not(.x):not(.o):hover::after {
+    height: 6rem;
+    width: 6rem;
+    background-color: white;
+}
+
+/* Hovering over the occupied cells is not allowed */
+.cell.o:hover,
+.cell.x:hover {
+    cursor: not-allowed;
+}
+
+/* Styling the button */
+.btn {
+    font-size: 1.8rem;
+    display: inline-block;
+    width: 20rem;
+    margin: 0 auto;
+}
+
+/* Styling the board to become only 2 crossed lines */
+.cell {
+    width: 10rem;
+    height: 10rem;
+    border: 1px solid black;
+    padding: .5rem;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cell:nth-child(1),
+.cell:nth-child(2),
+.cell:nth-child(3) {
+    border-top: none;
+}
+
+.cell:nth-child(7),
+.cell:nth-child(8),
+.cell:nth-child(9) {
+    border-bottom: none;
+}
+
+.cell:nth-child(3n) {
+    border-right: none;
+}
+
+.cell:nth-child(3n-2) {
+    border-left: none;
+}
+
+/* Winning message screen */
+.winning-message-box.hide {
+    display: none;
+}
+
+.winning-message-box.show {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: black;
+    opacity: .9;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.winning-message-box.show .winning-message {
+    color: #fff;
+    font-size: 8rem;
+}
+
+.winning-message-box.show .btn-reset {
+    font-size: 8rem;
+}
+
+.btn-reset:hover {
+    cursor: pointer;
+}
